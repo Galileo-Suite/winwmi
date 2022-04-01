@@ -8,12 +8,15 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/davecgh/go-spew/spew"
 
 	// You will get build constraints on this because it must be built
 	// on a Windows System.
 	"github.com/yusufpapurcu/wmi"
+
+	"github.com/urfave/cli/v2"
 )
 
 // In this wmi package you create the type that matches the class you want to
@@ -30,6 +33,19 @@ type Win32_DiskPartition struct {
 }
 
 func main() {
+	app := &cli.App{
+		Action: getMetrics,
+	}
+
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
+	disks()
+}
+
+func getMetrics() {
+	processes()
 	disks()
 }
 
