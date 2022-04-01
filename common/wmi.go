@@ -14,12 +14,13 @@ import (
 var files embed.FS
 
 func GetAllMetrics(c *cli.Context) error {
-	p := getWmi(maps.Win32_PhysicalMemory{})
+	spew.Dump(c)
+	p := getWmi()
 	spew.Dump(p)
 	return nil
 }
 
-func getWmi(m maps.Win32_PhysicalMemory) (r []maps.Win32_PhysicalMemory) {
+func getWmi() (r []maps.Win32_PhysicalMemory) {
 	q := wmi.CreateQuery(&r, "")
 	err := wmi.Query(q, &r)
 	if err != nil {
