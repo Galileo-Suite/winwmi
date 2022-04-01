@@ -10,12 +10,12 @@ import (
 )
 
 func GetAllMetrics(c *cli.Context) error {
-	p := getWmi(maps.Win32_Process{})
-	spew.Dump(len(p), "processe(s)")
+	p := getWmi(maps.Win32_PhysicalMemory{})
+	spew.Dump(p)
 	return nil
 }
 
-func getWmi(m maps.Win32_Process) (r []maps.Win32_Process) {
+func getWmi(m maps.Win32_PhysicalMemory) (r []maps.Win32_PhysicalMemory) {
 	q := wmi.CreateQuery(&r, "")
 	err := wmi.Query(q, &r)
 	if err != nil {
