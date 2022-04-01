@@ -38,7 +38,7 @@ system.
 Clone the repo and run `go run main.go`:
 
 ```cmd
-https://github.com/vgcrld/winwmi.git
+git clone https://github.com/vgcrld/winwmi.git
 cd winwmi
 go run main.go
 ```
