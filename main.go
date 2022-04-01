@@ -6,7 +6,6 @@ package main
 
 */
 import (
-	"embed"
 	"log"
 	"os"
 
@@ -14,27 +13,16 @@ import (
 	"github.com/vgcrld/winwmi/common"
 )
 
-//go:embed files/*
-var files embed.FS
-
 func main() {
 
 	app := &cli.App{
 		Action:      common.GetAllMetrics,
-		Usage:       getFileString("usage"),
-		Description: getFileString("description"),
+		Usage:       common.GetFileString("usage"),
+		Description: common.GetFileString("description"),
 	}
 	err := app.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-}
-
-func getFileString(n string) (desc string) {
-	b, err := files.ReadFile("files/" + n)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return string(b)
 }
