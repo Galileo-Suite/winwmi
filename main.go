@@ -6,68 +6,54 @@ package main
 
 */
 import (
-	"fmt"
+	"embed"
 	"log"
 	"os"
 
 	"github.com/davecgh/go-spew/spew"
-
-	// You will get build constraints on this because it must be built
-	// on a Windows System.
-	"github.com/yusufpapurcu/wmi"
+	"github.com/yusufpapurcu/wmi" // On Linux/Mac, build constraints - it must be built on Win
 
 	"github.com/urfave/cli/v2"
+
+	"github.com/vgcrld/winwmi/maps"
+
+	_ "github.com/vgcrld/winwmi/common" // Inclue for fun?
 )
 
-// In this wmi package you create the type that matches the class you want to
-// collect and then you add the members that you need.
-// see as an example:
-// https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-process
-type Win32_Process struct {
-	Name            string
-	ParentProcessId uint32
-}
-
-type Win32_DiskPartition struct {
-	Name string
-}
+//go:embed files/*
+var files embed.FS
 
 func main() {
+
+	description, err := files.ReadFile("files/description")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	app := &cli.App{
-		Action: getMetrics,
+		Action:      getAllMetrics,
+		Usage:       "Easy to use metrics getter",
+		Description: string(description),
 	}
 
-	err := app.Run(os.Args)
+	err = app.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
 	}
-	disks()
+
 }
 
-func getMetrics() {
-	processes()
-	disks()
+func getAllMetrics(c *cli.Context) error {
+	p := getWmi(maps.Win32_Process{})
+	spew.Dump(len(p), "processe(s)")
+	return nil
 }
 
-func processes() {
-	var dst []Win32_Process
-	q := wmi.CreateQuery(&dst, "")
-	err := wmi.Query(q, &dst)
+func getWmi(m maps.Win32_Process) (r []maps.Win32_Process) {
+	q := wmi.CreateQuery(&r, "")
+	err := wmi.Query(q, &r)
 	if err != nil {
 		log.Fatal(err)
 	}
-	spew.Dump(dst)
-}
-
-func disks() {
-	var dst []Win32_DiskPartition
-	q := wmi.CreateQuery(&dst, "")
-	err := wmi.Query(q, &dst)
-	if err != nil {
-		log.Fatal(err)
-	}
-	for _, v := range dst {
-		fmt.Println(v.Name)
-	}
-
+	return r
 }

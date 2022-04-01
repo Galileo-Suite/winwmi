@@ -1,0 +1,10 @@
+WMI Collection Tool
+
+This is a demo on collecting data from WMI using Go.
+
+It is a start tool. It's not meant to be exhaustive.
+
+See the maps/*go folder from the WMI classes you can 
+collect from. Add Members to structures to get 
+more details.
+
