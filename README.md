@@ -3,9 +3,11 @@
 Sample code to get WMI metrics from a Windows system using Go.
 
 This is really just a simple layout on how it's done. It would need to 
-be taylored to capture what's need.
+be taylored to capture what's needed.
 
-The inital metrics are specifc to doing a cloud migration.
+The metrics captured hear are specifc to capture metrics
+helpful in doing system right-sizing for a cloud migration 
+from on-prem to Azure or AWS (for example).
 
 # Cloud Metrics
 
