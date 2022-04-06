@@ -5,9 +5,12 @@ Sample code to get WMI metrics from a Windows system using Go.
 This is really just a simple layout on how it's done. It would need to 
 be taylored to capture what's needed.
 
-The metrics captured hear are specifc to capture metrics
-helpful in doing system right-sizing for a cloud migration 
+The metrics captured are 
+helpful in system right-sizing for a cloud migration 
 from on-prem to Azure or AWS (for example).
+
+They are just some of the metrics you'd need long term to 
+figure this out.
 
 # Cloud Metrics
 
@@ -31,11 +34,9 @@ These are the basic metrics that are needed for clound migration.
 
 # Installation
 
-There are a couple of ways to capture this. 
-Both require that you have [Go](https://go.dev/dl/) installed on your 
-system. 
+There are a couple of ways to run this. 
 
-Make sure you have [go installed](https://go.dev/dl/).
+Both require that you have [Go](https://go.dev/dl/) installed on your system. 
 
 ## Clone This Repo
 
