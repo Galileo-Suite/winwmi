@@ -1,6 +1,6 @@
 # winwmi
 
-As sample app on how to get WMI metrics from a Windows system using Go.
+Sample code to get WMI metrics from a Windows system using Go.
 
 This is really just a simple layout on how it's done. It would need to 
 be taylored to capture what's need.
@@ -33,9 +33,11 @@ There are a couple of ways to capture this.
 Both require that you have [Go](https://go.dev/dl/) installed on your 
 system. 
 
+Make sure you have [go installed](https://go.dev/dl/).
+
 ## Clone This Repo
 
-Clone the repo and run `go run main.go`:
+Clone the repo and run:
 
 ```cmd
 git clone https://github.com/vgcrld/winwmi.git
