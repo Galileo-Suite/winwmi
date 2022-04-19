@@ -9,12 +9,9 @@ The metrics captured are
 helpful in system right-sizing for a cloud migration 
 from on-prem to Azure or AWS (for example).
 
-They are just some of the metrics you'd need long term to 
-figure this out.
+These are the basic metrics that are needed for clound migration. 
 
 # Cloud Metrics
-
-These are the basic metrics that are needed for clound migration. 
 
 * Currently Configured 
   * Configured CPUs 
